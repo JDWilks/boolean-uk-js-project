@@ -5,11 +5,16 @@
   box-sizing: border-box;
 }
 
+body {
+    background: rgb(238,174,202);
+background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
 #topTitle {
   font-family: "Creepster", cursive;
   color: rgb(179, 75, 179);
   font-size: 4rem;
-  text-shadow: 4px 4px rgb(240, 200, 207);
+  text-shadow: 4px 4px rgb(255, 255, 255);
   text-align: center;
   padding: 20px;
 }
@@ -26,7 +31,96 @@ li {
 }
 
 .charImage {
-  box-shadow: 5px 5px rgba(199, 198, 198, 0.486);
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  padding: 10px;
 }
+
+.mainDiv,
+.favourite {
+  font-family: "Abel", sans-serif;
+  font-size: 1.5rem;
+  color: grey;
+  padding-left: 10px;
+}
+
+.favouriteCheckBox {
+  width: 25px;
+  height: 25px;
+}
+
+#header {
+  display: grid;
+}
+
+.topSearchBar {
+  border: 1px solid grey;
+  border-radius: 5px;
+  height: 25px;
+  width: 25%;
+  padding: 2px 23px 2px 30px;
+  outline: 0;
+  background-color: #f5f5f5;
+  justify-self: center;
+  margin-bottom: 10px;
+  text-align: center;
+  border: none;
+}
+
+#footer{
+    display: grid;
+}
+
+.moreButton {
+    background-color: rgb(179, 75, 179);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 2rem
+    border-radius: 10px;
+    margin-top: 15px
+    cursor:pointer;
+    margin-top: 30px;
+}
+
+.buttonContainer{
+
+
+    text-align: center;
+}
+
+.buttonSearchBar {
+   
+    border: none;
+    color: rgb(179, 75, 179);
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    height: 35px;
+    width: 15%;
+    /* padding: 2px 23px 2px 30px; */
+    outline: 0;
+    background-color: #f5f5f5;
+    justify-self: center;
+    cursor:pointer;
+    margin: 5px;
+  }
+
+  .buttonResetBar {
+   
+    border: none;
+    color: rgb(179, 75, 179);
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    height: 35px;
+    width: 15%;
+    /* padding: 2px 23px 2px 30px; */
+    outline: 0;
+    background-color: #f5f5f5;
+    justify-self: center;
+    cursor:pointer;
+    margin: 5px;
+  }
