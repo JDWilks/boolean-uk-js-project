@@ -106,6 +106,7 @@ li {
     justify-self: center;
     cursor:pointer;
     margin: 5px;
+    text-transform: uppercase;
   }
 
   .buttonResetBar {
@@ -123,4 +124,5 @@ li {
     justify-self: center;
     cursor:pointer;
     margin: 5px;
+    text-transform: uppercase;
   }

@@ -57,6 +57,16 @@ function renderCharacterChip(character) {
   favouriteCheckbox.setAttribute("name", "favouriteCheckBox");
   favouriteCheckbox.setAttribute("value", "input");
 
+  favouriteCheckbox.addEventListener("change", function (event) {
+    console.log(event.target.checked);
+    if (event.target.checked === true) {
+      console.log("true if statement triggered");
+      // renderCharacterChip(character); this currently adds the character to the end of the page - not right
+    } else {
+      console.log("Checkbox is not checked..");
+    }
+  });
+
   mainUl.append(nameLi, statusLi, speciesLi, genderLi);
   characterImage.append(characterImgEl, mainUl);
 
@@ -87,11 +97,9 @@ function addSearchFacilty() {
 
   const buttonSearchEl = document.createElement("button");
   buttonSearchEl.setAttribute("class", "buttonSearchBar");
-  buttonSearchEl.innerText = "Hit Me To Search";
+  buttonSearchEl.innerText = "Schwifty Search";
 
   buttonSearchEl.addEventListener("click", function () {
-    console.log("you've clicked the button - well done - good boy");
-
     fetch(`https://rickandmortyapi.com/api/character/?name=${searchEl.value}`)
       .then(function (response) {
         return response.json();
@@ -99,17 +107,15 @@ function addSearchFacilty() {
       .then(function (characters) {
         mainElement.innerHTML = "";
         state.character = characters;
-        renderCharacterChips(console.log("inside function", characters));
+        renderCharacterChips();
       });
   });
 
   const buttonResetEl = document.createElement("button");
   buttonResetEl.setAttribute("class", "buttonResetBar");
-  buttonResetEl.innerText = "Hit Me To Reset";
+  buttonResetEl.innerText = "Schwifty Reset";
 
   buttonResetEl.addEventListener("click", function () {
-    console.log("you've clicked the second button - well done - good boy");
-
     mainElement.innerHTML = "";
     getCharactersFromServer();
   });
@@ -182,5 +188,3 @@ function runFunctions() {
 }
 
 runFunctions();
-
-console.log("this is state :", state);
