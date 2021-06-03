@@ -34,6 +34,7 @@ li {
   margin-top: 10px;
   margin-bottom: 5px;
   padding: 10px;
+  /* box-shadow: 0 8px 6px -6px black; */
 }
 
 .mainDiv,
@@ -49,6 +50,24 @@ li {
   height: 25px;
 }
 
+.viewFavouriteButton{
+  background-color: rgb(179, 75, 179);
+  border: 1px solid grey;
+  border-radius: 5px;
+  color: white;
+  /* padding: 15px 32px; */
+  padding: 10px;
+  margin-top: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 2rem
+  margin-top: 15px
+  cursor:pointer;
+  display: block;
+  margin-left: 10px;
+  cursor:pointer;
+}
+
 #header {
   display: grid;
 }
@@ -57,7 +76,7 @@ li {
   border: 1px solid grey;
   border-radius: 5px;
   height: 25px;
-  width: 25%;
+  width: 30.5%;
   padding: 2px 23px 2px 30px;
   outline: 0;
   background-color: #f5f5f5;
@@ -83,6 +102,20 @@ li {
     margin-top: 15px
     cursor:pointer;
     margin-top: 30px;
+}
+
+.backButton {
+  background-color: rgb(179, 75, 179);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 2rem
+  border-radius: 10px;
+  margin-top: 15px
+  cursor:pointer;
+  margin-top: 5px;
 }
 
 .buttonContainer{

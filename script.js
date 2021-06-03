@@ -4,7 +4,8 @@ state = {
   character: [],
   location: [],
   episode: [],
-  favourits: [],
+  favourites: [],
+  currentPage: 1,
 };
 
 // ⬇ query selectors for html bridge⬇ //////////////////////////////////////////////////
@@ -46,10 +47,14 @@ function renderCharacterChip(character) {
   genderLi.setAttribute("class", "genderLi");
   genderLi.innerText = `Gender: ${character.gender}`;
 
+  const typeLi = document.createElement("li");
+  typeLi.setAttribute("class", "typeLi");
+  typeLi.innerText = `type: ${character.type}`;
+
   const favouriteLabel = document.createElement("label");
   favouriteLabel.setAttribute("class", "favourite");
   favouriteLabel.setAttribute("for", "Favourite");
-  favouriteLabel.innerText = "Favour Meeee ";
+  favouriteLabel.innerText = "Add Me To Favourites ";
 
   const favouriteCheckbox = document.createElement("input");
   favouriteCheckbox.setAttribute("class", "favouriteCheckBox");
@@ -61,23 +66,49 @@ function renderCharacterChip(character) {
     console.log(event.target.checked);
     if (event.target.checked === true) {
       console.log("true if statement triggered");
-      // renderCharacterChip(character); this currently adds the character to the end of the page - not right
+      state.favourites.push(character);
+      console.log("what is state now after push?:", state.favourites);
     } else {
       console.log("Checkbox is not checked..");
+      state.favourites.pop(character);
+      console.log("what is state now after pop?:", state.favourites);
     }
   });
 
-  mainUl.append(nameLi, statusLi, speciesLi, genderLi);
+  const viewFavouriteButton = document.createElement("button");
+  viewFavouriteButton.setAttribute("class", "viewFavouriteButton");
+  viewFavouriteButton.innerText = "View Favourites";
+
+  viewFavouriteButton.addEventListener("click", function () {
+    console.log("you've clicked favourite :", state.favourites);
+    mainElement.innerHTML = "";
+    renderFavouriteCharacters();
+  });
+
+  mainUl.append(nameLi, statusLi, speciesLi, genderLi, typeLi);
   characterImage.append(characterImgEl, mainUl);
 
-  characterChipEl.append(characterImage, favouriteLabel, favouriteCheckbox);
+  characterChipEl.append(
+    characterImage,
+    favouriteLabel,
+    favouriteCheckbox,
+    viewFavouriteButton
+  );
   mainElement.append(characterChipEl);
 }
 
 // ⬇ function to create all the user chips ⬇ /////////////////////////////////////////
 
-function renderCharacterChips(characters) {
+function renderCharacterChips() {
   for (const character of state.character.results) {
+    renderCharacterChip(character);
+  }
+}
+
+// ⬇ function to create all the favourites chips ⬇ /////////////////////////////////////////
+
+function renderFavouriteCharacters() {
+  for (const character of state.favourites) {
     renderCharacterChip(character);
   }
 }
@@ -90,7 +121,10 @@ function addSearchFacilty() {
   searchEl.setAttribute("class", "topSearchBar");
 
   searchEl.setAttribute("type", "text");
-  searchEl.setAttribute("placeholder", "Search Characters...");
+  searchEl.setAttribute(
+    "placeholder",
+    "Search Characters (By Name or single letter)..."
+  );
 
   const buttonDiv = document.createElement("div");
   buttonDiv.setAttribute("class", "buttonContainer");
@@ -100,6 +134,7 @@ function addSearchFacilty() {
   buttonSearchEl.innerText = "Schwifty Search";
 
   buttonSearchEl.addEventListener("click", function () {
+    //document.getElementsByClassName("topSearchBar").value = ""; // trying to clear the copy in search section on click
     fetch(`https://rickandmortyapi.com/api/character/?name=${searchEl.value}`)
       .then(function (response) {
         return response.json();
@@ -116,6 +151,10 @@ function addSearchFacilty() {
   buttonResetEl.innerText = "Schwifty Reset";
 
   buttonResetEl.addEventListener("click", function () {
+    state.currentPage = 1;
+    state.favourites = [];
+    console.log("the current state page is :", state.currentPage);
+    console.log("the current state favouties is :", state.favourites);
     mainElement.innerHTML = "";
     getCharactersFromServer();
   });
@@ -133,7 +172,10 @@ function addMoreButton() {
   footer.append(moreButton);
 
   moreButton.addEventListener("click", function (character) {
-    fetch("https://rickandmortyapi.com/api/character?page=2")
+    state.currentPage = state.currentPage + 1;
+    mainElement.innerHTML = "";
+
+    fetch(`https://rickandmortyapi.com/api/character?page=${state.currentPage}`)
       .then(function (response) {
         return response.json();
       })
@@ -141,8 +183,35 @@ function addMoreButton() {
         state.character = characters;
         renderCharacterChips(characters);
       });
+    console.log("state page is now: ", state.currentPage);
+  });
+}
 
-    console.log("you clicked more button - good boy - well done - very clever");
+// ⬇ function to add the bottom back page ability ⬇ /////////////////////////////////////////
+// note: I think i need to use ternery operator to stop it going minus when on first page ////
+
+function backPageButton() {
+  const backButton = document.createElement("button");
+  backButton.setAttribute("class", "backButton");
+  backButton.innerText = "Click to go back a page";
+  footer.append(backButton);
+
+  backButton.addEventListener("click", function (character) {
+    if (state.currentPage >= 2) {
+      state.currentPage = state.currentPage - 1;
+    } else state.currentPage = 1;
+
+    mainElement.innerHTML = "";
+
+    fetch(`https://rickandmortyapi.com/api/character?page=${state.currentPage}`)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (characters) {
+        state.character = characters;
+        renderCharacterChips(characters);
+      });
+    console.log("state page is now: ", state.currentPage);
   });
 }
 
@@ -185,6 +254,7 @@ function runFunctions() {
   getEpisodeFromServer();
   addSearchFacilty();
   addMoreButton();
+  backPageButton();
 }
 
 runFunctions();
