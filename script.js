@@ -54,7 +54,7 @@ function renderCharacterChip(character) {
   const favouriteLabel = document.createElement("label");
   favouriteLabel.setAttribute("class", "favourite");
   favouriteLabel.setAttribute("for", "Favourite");
-  favouriteLabel.innerText = "Add Me To Favourites ";
+  favouriteLabel.innerText = "Add Me To Favourites... ";
 
   const favouriteCheckbox = document.createElement("input");
   favouriteCheckbox.setAttribute("class", "favouriteCheckBox");
@@ -69,9 +69,32 @@ function renderCharacterChip(character) {
       state.favourites.push(character);
       console.log("what is state now after push?:", state.favourites);
     } else {
+      event.target.checked === character.id;
       console.log("Checkbox is not checked..");
       state.favourites.pop(character);
       console.log("what is state now after pop?:", state.favourites);
+    }
+  });
+
+  const deleteLabel = document.createElement("label");
+  deleteLabel.setAttribute("class", "delete");
+  deleteLabel.setAttribute("for", "Delete");
+  deleteLabel.innerText = "Delete Me From Favourites... ";
+
+  const deleteFavouriteCheckbox = document.createElement("input");
+  deleteFavouriteCheckbox.setAttribute("class", "deleteFavouriteCheckBox");
+  deleteFavouriteCheckbox.setAttribute("type", "checkbox");
+  deleteFavouriteCheckbox.setAttribute("name", "deleteFavouriteCheckBox");
+  deleteFavouriteCheckbox.setAttribute("value", "input");
+
+  deleteFavouriteCheckbox.addEventListener("change", function (event) {
+    console.log(event.target.checked);
+    if (event.target.checked === true) {
+      console.log("true if statement triggered", event);
+      state.favourites.pop(character);
+      mainElement.innerHTML = "";
+      renderFavouriteCharacters();
+      console.log("what is state now after push?:", state.favourites);
     }
   });
 
@@ -92,6 +115,8 @@ function renderCharacterChip(character) {
     characterImage,
     favouriteLabel,
     favouriteCheckbox,
+    deleteLabel,
+    deleteFavouriteCheckbox,
     viewFavouriteButton
   );
   mainElement.append(characterChipEl);
@@ -119,8 +144,10 @@ function renderFavouriteCharacters() {
 function addSearchFacilty() {
   const searchEl = document.createElement("input");
   searchEl.setAttribute("class", "topSearchBar");
+  searchEl.setAttribute("name", "topSearchBar");
 
   searchEl.setAttribute("type", "text");
+  searchEl.setAttribute("name", "topSearchBar");
   searchEl.setAttribute(
     "placeholder",
     "Search Characters (By Name or single letter)..."
@@ -134,7 +161,7 @@ function addSearchFacilty() {
   buttonSearchEl.innerText = "Schwifty Search";
 
   buttonSearchEl.addEventListener("click", function () {
-    //document.getElementsByClassName("topSearchBar").value = ""; // trying to clear the copy in search section on click
+    // document.getElementsByClassName("topSearchBar").reset(); // not working and i have no idea why ?????
     fetch(`https://rickandmortyapi.com/api/character/?name=${searchEl.value}`)
       .then(function (response) {
         return response.json();

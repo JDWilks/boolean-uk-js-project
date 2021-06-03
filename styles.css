@@ -37,17 +37,29 @@ li {
   /* box-shadow: 0 8px 6px -6px black; */
 }
 
-.mainDiv,
-.favourite {
+.mainDiv {
   font-family: "Abel", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: grey;
   padding-left: 10px;
+ display: block;
 }
 
-.favouriteCheckBox {
+
+
+
+.favourite, .delete {
+  font-family: "Abel", sans-serif;
+  font-size: 1.2rem;
+  color: grey;
+  padding-left: 10px;
+ display: inline-block;
+}
+
+.favouriteCheckBox, .deleteFavouriteCheckBox {
   width: 25px;
   height: 25px;
+  opacity: 25%;
 }
 
 .viewFavouriteButton{
