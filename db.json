@@ -1,3 +1,180 @@
 {
-  "favourites": []
+  "favourites": [
+    {
+      "charId": 3,
+      "id": 1
+    },
+    {
+      "charId": 2,
+      "id": 2
+    },
+    {
+      "charId": 1,
+      "id": 3
+    },
+    {
+      "charId": 3,
+      "id": 4
+    },
+    {
+      "charId": 2,
+      "id": 5
+    },
+    {
+      "charId": 1,
+      "id": 6
+    },
+    {
+      "charId": 3,
+      "id": 7
+    },
+    {
+      "charId": 2,
+      "id": 8
+    },
+    {
+      "charId": 1,
+      "id": 9
+    },
+    {
+      "charId": 3,
+      "id": 10
+    },
+    {
+      "charId": 2,
+      "id": 11
+    },
+    {
+      "charId": 1,
+      "id": 12
+    },
+    {
+      "charId": 2,
+      "id": 13
+    },
+    {
+      "charId": 1,
+      "id": 14
+    },
+    {
+      "charId": 1,
+      "id": 15
+    },
+    {
+      "charId": 1,
+      "id": 16
+    },
+    {
+      "charId": 3,
+      "id": 17
+    },
+    {
+      "charId": 2,
+      "id": 18
+    },
+    {
+      "charId": 1,
+      "id": 19
+    },
+    {
+      "charId": 3,
+      "id": 20
+    },
+    {
+      "charId": 3,
+      "id": 21
+    },
+    {
+      "charId": 23,
+      "id": 22
+    },
+    {
+      "charId": 22,
+      "id": 23
+    },
+    {
+      "charId": 21,
+      "id": 24
+    },
+    {
+      "charId": 25,
+      "id": 25
+    },
+    {
+      "charId": 26,
+      "id": 26
+    },
+    {
+      "charId": 3,
+      "id": 27
+    },
+    {
+      "charId": 2,
+      "id": 28
+    },
+    {
+      "charId": 1,
+      "id": 29
+    },
+    {
+      "charId": 23,
+      "id": 30
+    },
+    {
+      "charId": 22,
+      "id": 31
+    },
+    {
+      "charId": 21,
+      "id": 32
+    },
+    {
+      "charId": 1,
+      "id": 33
+    },
+    {
+      "charId": 2,
+      "id": 34
+    },
+    {
+      "charId": 3,
+      "id": 35
+    },
+    {
+      "charId": 3,
+      "id": 36
+    },
+    {
+      "charId": 2,
+      "id": 37
+    },
+    {
+      "charId": 1,
+      "id": 38
+    },
+    {
+      "charId": 8,
+      "id": 39
+    },
+    {
+      "charId": 9,
+      "id": 40
+    },
+    {
+      "charId": 1,
+      "id": 41
+    },
+    {
+      "charId": 2,
+      "id": 42
+    },
+    {
+      "charId": 7,
+      "id": 43
+    },
+    {
+      "charId": 6,
+      "id": 44
+    }
+  ]
 }
