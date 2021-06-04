@@ -65,6 +65,7 @@ function renderCharacterChip(character) {
   favouriteCheckbox.addEventListener("change", function (event) {
     console.log(event.target.checked);
     if (event.target.checked === true) {
+      fetch;
       console.log("true if statement triggered");
       state.favourites.push(character);
       console.log("what is state now after push?:", state.favourites);
@@ -139,13 +140,10 @@ function renderFavouriteCharacters() {
 }
 
 // ⬇ function to add the top function ability ⬇ /////////////////////////////////////////
-// trying to add in document.getElementsByClassName("topSearchBar").reset(); to reset form - not working
 
 function addSearchFacilty() {
   const searchEl = document.createElement("input");
   searchEl.setAttribute("class", "topSearchBar");
-  searchEl.setAttribute("name", "topSearchBar");
-
   searchEl.setAttribute("type", "text");
   searchEl.setAttribute("name", "topSearchBar");
   searchEl.setAttribute(
@@ -158,10 +156,12 @@ function addSearchFacilty() {
 
   const buttonSearchEl = document.createElement("button");
   buttonSearchEl.setAttribute("class", "buttonSearchBar");
+  buttonSearchEl.setAttribute("name", "topSearchBar");
   buttonSearchEl.innerText = "Schwifty Search";
 
   buttonSearchEl.addEventListener("click", function () {
-    // document.getElementsByClassName("topSearchBar").reset(); // not working and i have no idea why ?????
+    const getSearch = document.querySelector(".topSearchBar");
+
     fetch(`https://rickandmortyapi.com/api/character/?name=${searchEl.value}`)
       .then(function (response) {
         return response.json();
@@ -191,6 +191,7 @@ function addSearchFacilty() {
 }
 
 // ⬇ function to add the bottom button 'more' ability ⬇ /////////////////////////////////////////
+// I need to amend this for when searching and looking to view more of search ////////////////////
 
 function addMoreButton() {
   const moreButton = document.createElement("button");
@@ -215,7 +216,6 @@ function addMoreButton() {
 }
 
 // ⬇ function to add the bottom back page ability ⬇ /////////////////////////////////////////
-// note: I think i need to use ternery operator to stop it going minus when on first page ////
 
 function backPageButton() {
   const backButton = document.createElement("button");
@@ -242,7 +242,7 @@ function backPageButton() {
   });
 }
 
-// ⬇ functions to get info from server and store in state ⬇ //////////////////////////
+// ⬇ functions to get info from server and store in state ⬇ (i'm only using characters for now)//
 
 function getCharactersFromServer() {
   fetch("https://rickandmortyapi.com/api/character")
@@ -274,6 +274,8 @@ function getEpisodeFromServer() {
       state.episode = episode;
     });
 }
+
+// ⬇ function to run all functions ahhahhhahhhhhahhhhhhh⬇ ///////////////////////////////////////
 
 function runFunctions() {
   getCharactersFromServer();
